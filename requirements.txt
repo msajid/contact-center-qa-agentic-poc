@@ -1,0 +1,15 @@
+# Contact Center QA POC — Python dependencies (pinned for reproducible builds).
+#
+# Microsoft Agent Framework (Python) with the Foundry chat client.
+# The app still runs in "simulation" mode if these can't be installed;
+# live agent runs require a Foundry project.
+agent-framework==1.13.0
+agent-framework-foundry==1.10.4
+azure-identity==1.25.3
+
+# Web API + serving the frontend
+fastapi==0.138.0
+starlette==1.6.0
+uvicorn[standard]==0.52.1
+pydantic==2.13.4
+python-dotenv==1.2.2

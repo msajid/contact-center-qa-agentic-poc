@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Center Quality Assurance — Agentic POC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="styles.css?v=12" />
+  </head>
+  <body>
+    <header class="appbar">
+      <div class="brand">
+        <div class="brand-mark">QA</div>
+        <div class="brand-text">
+          <h1>Contact Center Quality Assurance</h1>
+          <p>Agentic framework benchmarking &amp; continuous improvement</p>
+        </div>
+      </div>
+      <div class="appbar-right">
+        <span class="mode-badge" id="mode-badge" title="Agent execution mode">
+          <span class="dot"></span><span id="mode-text">checking…</span>
+        </span>
+      </div>
+    </header>
+
+    <main class="board">
+      <!-- LEFT: current framework -->
+      <section class="panel panel--framework" id="framework-panel">
+        <div class="panel-head">
+          <div>
+            <h2>Current QA Framework</h2>
+            <p class="panel-sub" id="framework-meta">Loading…</p>
+          </div>
+          <span class="pill pill--version" id="framework-version"></span>
+        </div>
+        <div class="framework-facts" id="framework-facts"></div>
+        <h3 class="section-label">Service Levels &amp; KPIs</h3>
+        <div class="kpi-list" id="kpi-list"></div>
+        <div class="kpi-run-bar" id="kpi-run-bar" hidden>
+          <div class="kpi-run-label" id="kpi-run-label"></div>
+          <button class="btn btn--run btn--kpi-run" data-agent="kpi" id="kpi-run-btn"><span class="btn-label">Run improvement agent</span></button>
+        </div>
+        <h3 class="section-label">Evaluation Scorecard</h3>
+        <div class="scorecard" id="scorecard"></div>
+      </section>
+
+      <!-- RIGHT: agents -->
+      <div class="agents">
+        <!-- Focused single-KPI improvement agent -->
+        <section class="panel panel--agent panel--kpi" id="kpi-panel">
+          <div class="panel-head">
+            <div>
+              <h2>KPI Improvement Agent</h2>
+              <p class="panel-sub" id="kpi-panel-sub">Select a KPI on the left, then run a focused, standards-grounded improvement analysis for just that KPI.</p>
+            </div>
+            <button class="btn btn--run" data-agent="kpi" id="kpi-panel-run" disabled>
+              <span class="btn-label">Run agent</span>
+            </button>
+          </div>
+          <div class="agent-summary" id="kpi-summary" hidden></div>
+          <div class="findings" id="kpi-findings">
+            <div class="empty-state">Pick a KPI from the framework on the left, then run the agent for targeted improvements, action items, industry trends &amp; new KPIs to introduce &mdash; for that KPI only.</div>
+          </div>
+        </section>
+
+        <section class="panel panel--agent" id="market-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Market Benchmark Researcher Agent</h2>
+              <p class="panel-sub">Compares your framework to ISO, COPC &amp; 7-Star standards and cites official sources.</p>
+            </div>
+            <button class="btn btn--run" data-agent="market">
+              <span class="btn-label">Run agent</span>
+            </button>
+          </div>
+          <div class="agent-summary" id="market-summary" hidden></div>
+          <div class="findings" id="market-findings">
+            <div class="empty-state">Run the agent to compare your framework against the latest market benchmarks.</div>
+          </div>
+        </section>
+
+        <section class="panel panel--agent" id="perf-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Current Performance Improvement Agent</h2>
+              <p class="panel-sub">Analyzes recent interactions &amp; coaching data, proposes targeted fixes.</p>
+            </div>
+            <button class="btn btn--run" data-agent="performance">
+              <span class="btn-label">Run agent</span>
+            </button>
+          </div>
+          <div class="agent-summary" id="performance-summary" hidden></div>
+          <div class="findings" id="performance-findings">
+            <div class="empty-state">Run the agent to surface coaching &amp; framework fixes from your operational data.</div>
+          </div>
+        </section>
+
+        <!-- AI assistant chatbot (right column) -->
+        <section class="panel panel--chat" id="chat-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Ask the QA Improvement Assistant</h2>
+              <p class="panel-sub">Ask about the findings or how to improve a KPI. The assistant can add a new suggestion you can simulate &amp; approve.</p>
+            </div>
+            <span class="chat-badge">AI chat</span>
+          </div>
+          <div class="chat-thread" id="chat-thread">
+            <div class="chat-msg assistant">Hi! Ask me things like &ldquo;how do I raise First Contact Resolution?&rdquo; or &ldquo;how do I reduce the Abandonment Rate?&rdquo; I&rsquo;ll suggest actions, new KPIs, trainings and standard-aligned practices &mdash; grounded in ISO and COPC &mdash; and drop a suggestion card you can tick, Simulate and Approve.</div>
+          </div>
+          <form class="chat-input-row" id="chat-form">
+            <input id="chat-input" type="text" placeholder="e.g. How do I reduce average handle time?" autocomplete="off" />
+            <button class="btn btn--run" type="submit" id="chat-send"><span class="btn-label">Send</span></button>
+          </form>
+          <div class="chat-suggestions" id="chat-suggestions">
+            <button class="chip-suggest" data-ask="How do I raise First Contact Resolution to 85%?">Raise FCR to 85%</button>
+            <button class="chip-suggest" data-ask="How do I reduce the Abandonment Rate below 5%?">Reduce Abandonment</button>
+            <button class="chip-suggest" data-ask="How do I improve CSAT to 85%?">Improve CSAT</button>
+            <button class="chip-suggest" data-ask="How do I close the compliance gap to meet ISO 10002?">Close compliance gap</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="actionbar">
+      <div class="actionbar-left">
+        <button class="btn btn--primary" id="approve-btn" disabled>Approve Changes</button>
+        <button class="btn btn--ghost" id="route-btn">Approval Routing…</button>
+        <button class="btn btn--ghost" id="reset-btn">Reset</button>
+      </div>
+      <div class="selected-count" id="selected-count">0 changes selected</div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="modal" hidden>
+      <div class="modal-card" role="dialog" aria-modal="true">
+        <div class="modal-head">
+          <h3 id="modal-title">Approval Routing</h3>
+          <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+        <div class="modal-foot">
+          <span class="modal-hint">Press Esc or click outside to dismiss</span>
+          <button class="btn btn--primary" id="modal-done">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="toasts" id="toasts"></div>
+
+    <script src="app.js?v=12"></script>
+  </body>
+</html>

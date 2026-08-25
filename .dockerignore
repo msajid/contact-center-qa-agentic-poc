@@ -1,0 +1,25 @@
+# Keep the build context (and image) small and secret-free.
+.venv/
+venv/
+env/
+.git/
+.github/
+.vscode/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Never ship local secrets
+.env
+.env.*
+
+# Not needed at runtime
+screenshots/
+deploy/
+*.xlsx
+*.md
+run.ps1
+.gitignore
+.dockerignore
+.copilot-tracking/
